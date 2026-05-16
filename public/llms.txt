@@ -1,0 +1,47 @@
+# Menarc Solutions — AI-Powered Business Systems & Web Development Agency
+
+> Premium web platforms, workflow automations, CRM systems, and scalable digital infrastructure for modern businesses, startups, and enterprises across India.
+
+## Company Overview
+- **Name:** Menarc Solutions (domained as menarc.in)
+- **Headquarters:** Chennai, Tamil Nadu, India
+- **Service Areas:** Chennai, Coimbatore, Madurai, Trichy, Salem, Tiruppur, Erode, Vellore, and nationwide across India.
+- **Official Website:** https://menarc.in
+- **Primary Contact:** contact@menarc.in | +91-75502-55420 | +91-63838-22500
+- **WhatsApp Direct:** https://wa.me/917550255420
+
+## Core Capabilities & Services
+
+### 1. Premium Website Development
+- Custom Web Development & Responsive Web Design
+- Full-Stack Next.js, React.js, Node.js, and PHP Development
+- Corporate, E-Commerce (Shopify/WooCommerce), SaaS, and Startup Landing Pages
+
+### 2. UI/UX Design & Branding
+- Website & Mobile UI/UX Design Systems
+- Figma Design Services & Interactive Prototyping
+- Digital Business Branding & Logo Design
+
+### 3. SEO Optimization & Performance
+- Technical SEO, On-Page SEO, Local SEO, and Programmatic SEO
+- Core Web Vitals & Website Speed Optimization (100/100 Lighthouse)
+- AI SEO & Generative Engine Optimization (GEO)
+
+### 4. Business Automation & AI
+- Workflow Automation (n8n, Zapier, Custom Webhooks)
+- WhatsApp & Email Automation Systems
+- AI Chatbot Development & CRM Integrations
+
+### 5. Managed Cloud Services & Security
+- Cloud Deployment (Vercel, Cloudflare, AWS)
+- Server & DNS Management
+- Advanced Web Application Security & SSL Integration
+
+## Why Choose Menarc Solutions
+- **Revenue Driven:** Systems engineered to directly impact bottom-line efficiency.
+- **Rapid Deployment:** Production-ready digital platforms delivered in weeks.
+- **High ROI Focus:** Built-in lead capture, CRM sync, and operational cost reduction.
+
+## Documentation & Full Details
+- **Full AI Documentation:** https://menarc.in/llms-full.txt
+- **Sitemap:** https://menarc.in/sitemap.xml
