@@ -4,6 +4,7 @@ import Services from "@/components/sections/Services";
 import TechEcosystem from "@/components/sections/TechEcosystem";
 import Industries from "@/components/sections/Industries";
 import Contact from "@/components/sections/Contact";
+import FAQ from "@/components/sections/FAQ";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <TechEcosystem />
       <Industries />
       <Contact />
+      <FAQ />
     </>
   );
 }

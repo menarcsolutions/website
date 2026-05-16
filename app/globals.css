@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Space Grotesk", sans-serif;
-  --font-body: "Inter", sans-serif;
+  --font-display: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
 }
 
 @layer base {
   :root {
-    --menarc-dark: #050505;
-    --menarc-card: #0a0a0a;
-    --menarc-border: #1f1f1f;
-    --menarc-gold: #d4af37;
-    --menarc-white: #ffffff;
-    --menarc-gray: #a1a1aa;
+    --menarc-dark: #ffffff;
+    --menarc-card: #f5f5f7;
+    --menarc-border: #d2d2d7;
+    --menarc-gold: #c5a059;
+    --menarc-white: #1d1d1f;
+    --menarc-gray: #86868b;
     --menarc-light: #e5e7eb;
   }
 
@@ -26,19 +26,21 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
   }
 
   body {
-    background-color: #050816;
-    color: #e2e8f0;
-    font-family: "Inter", sans-serif;
-    line-height: 1.6;
+    background-color: #ffffff;
+    color: #1d1d1f;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
     overflow-x: hidden;
   }
 
   ::selection {
-    background-color: rgba(212, 175, 55, 0.2);
-    color: #d4af37;
+    background-color: rgba(197, 160, 89, 0.2);
+    color: #c5a059;
   }
 
   /* Custom scrollbar */
@@ -47,16 +49,16 @@
   }
 
   ::-webkit-scrollbar-track {
-    background: #050816;
+    background: #ffffff;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #1e293b;
+    background: #d2d2d7;
     border-radius: 3px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #334155;
+    background: #86868b;
   }
 
   h1,
@@ -65,9 +67,10 @@
   h4,
   h5,
   h6 {
-    font-family: "Space Grotesk", sans-serif;
-    line-height: 1.2;
-    letter-spacing: -0.02em;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    font-weight: 700;
   }
 
   a {
@@ -97,79 +100,119 @@
 }
 
 @layer utilities {
-  /* Gradient text */
-  .gradient-text {
-    background: linear-gradient(135deg, #d4af37 0%, #ffffff 100%);
+  /* Apple Signature Utility Classes */
+  .bg-apple-black {
+    background-color: #ffffff;
+  }
+
+  .bg-apple-card {
+    background-color: #f5f5f7;
+  }
+
+  .border-apple {
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+
+  .text-apple-muted {
+    color: #86868b;
+  }
+
+  /* Low-Tone Metallic Gradients (Black & Gold / Black & Silver) */
+  .gradient-titanium-silver {
+    background: linear-gradient(180deg, #1d1d1f 0%, #86868b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-bottom: 0.15em;
+    display: inline-block;
+  }
+
+  .gradient-titanium-gold {
+    background: linear-gradient(180deg, #1d1d1f 0%, #c5a059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.15em;
+    display: inline-block;
+  }
+
+  /* Gradient text (Legacy fallbacks) */
+  .gradient-text {
+    background: linear-gradient(180deg, #1d1d1f 0%, #c5a059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    padding-bottom: 0.15em;
+    display: inline-block;
   }
 
   .gradient-text-white {
-    background: linear-gradient(135deg, #ffffff 0%, #8b9db5 100%);
+    background: linear-gradient(180deg, #1d1d1f 0%, #86868b 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    padding-bottom: 0.15em;
+    display: inline-block;
   }
 
   /* Glassmorphism */
   .glass {
-    background: rgba(11, 16, 32, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .glass-light {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(245, 245, 247, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   /* Grid background */
   .bg-grid {
     background-image: linear-gradient(
-        rgba(212, 175, 55, 0.03) 1px,
+        rgba(0, 0, 0, 0.03) 1px,
         transparent 1px
       ),
-      linear-gradient(90deg, rgba(212, 175, 55, 0.03) 1px, transparent 1px);
+      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
     background-size: 60px 60px;
   }
 
   /* Glow borders */
   .border-glow-gold {
-    border: 1px solid rgba(212, 175, 55, 0.25);
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.08) inset;
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    box-shadow: 0 0 20px rgba(197, 160, 89, 0.1) inset;
   }
 
   .border-glow-white {
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.08) inset;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05) inset;
   }
 
   /* Section spacing */
   .section-padding {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-    scroll-margin-top: 5rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    scroll-margin-top: 6rem;
     content-visibility: auto;
     contain-intrinsic-size: 1px 500px;
   }
 
   @media (min-width: 768px) {
     .section-padding {
-      padding-top: 7rem;
-      padding-bottom: 7rem;
-      scroll-margin-top: 7rem;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+      scroll-margin-top: 8rem;
     }
   }
 
   @media (min-width: 1024px) {
     .section-padding {
-      padding-top: 9rem;
-      padding-bottom: 9rem;
-      scroll-margin-top: 9rem;
+      padding-top: 10rem;
+      padding-bottom: 10rem;
+      scroll-margin-top: 10rem;
     }
   }
 
@@ -194,7 +237,7 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(212, 175, 55, 0.1) 50%,
+      rgba(197, 160, 89, 0.15) 50%,
       transparent 100%
     );
     background-size: 200% 100%;

@@ -1,19 +1,18 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import Script from "next/script";
 
-const spaceGrotesk = Space_Grotesk({
+const interDisplay = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
   variable: "--font-display",
   display: "swap",
 });
 
-const inter = Inter({
+const interBody = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600"],
   variable: "--font-body",
@@ -99,7 +98,14 @@ export default function RootLayout({
         "@type": "Organization",
         "@id": "https://menarc.in/#organization",
         "name": "Menarc",
+        "alternateName": "Menarc Solutions",
         "url": "https://menarc.in",
+        "sameAs": [
+          "https://www.linkedin.com/company/menarc",
+          "https://x.com/menarcsolutions",
+          "https://github.com/menarcsolutions",
+          "https://www.crunchbase.com/organization/menarc-solutions"
+        ],
         "logo": {
           "@type": "ImageObject",
           "url": "https://menarc.in/logo.svg",
@@ -165,13 +171,11 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} dark`} suppressHydrationWarning>
-      <body className="bg-[#050505] text-white font-body antialiased transition-colors duration-300">
-        <Script
-          id="json-ld"
+    <html lang="en" className={`${interDisplay.variable} ${interBody.variable} light`} suppressHydrationWarning>
+      <body className="bg-white text-[#1d1d1f] font-body antialiased transition-colors duration-300">
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          strategy="afterInteractive"
         />
         <ThemeProvider>
           <Navbar />

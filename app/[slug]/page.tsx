@@ -49,9 +49,22 @@ export default async function ProgrammaticPage({ params }: Props) {
     notFound();
   }
 
+  const serviceSlug = SEO_SERVICES.find(s => slug.startsWith(s.slug))?.title || "Business Systems";
+  const locationSlug = SEO_LOCATIONS.find(l => slug.endsWith(l.slug))?.city || "Tamil Nadu";
+
   return (
     <>
-      <Hero />
+      <Hero
+        badge={`Premium Systems in ${locationSlug}`}
+        title={
+          <>
+            <span className="block text-white">{serviceSlug}</span>
+            <span className="block text-white">Systems In</span>
+            <span className="block gradient-titanium-gold pb-2">{locationSlug}.</span>
+          </>
+        }
+        subtitle={`Premium ${serviceSlug.toLowerCase()} engineered for businesses in ${locationSlug}. We build cinematic web platforms, workflow automations, and CRM systems for uncompromising performance.`}
+      />
       <TrustBar />
       <Services />
       <TechEcosystem />
