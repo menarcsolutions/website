@@ -10,24 +10,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "menarc-dark": "#050505",
-        "menarc-card": "#0A0A0A",
-        "menarc-border": "#1F1F1F",
-        "menarc-gold": "#D4AF37",
-        "menarc-white": "#FFFFFF",
-        "menarc-gray": "#A1A1AA",
-        "menarc-light": "#E5E7EB",
+        "menarc-dark": "#ffffff",
+        "menarc-card": "#f5f5f7",
+        "menarc-border": "#d2d2d7",
+        "menarc-gold": "#c5a059",
+        "menarc-white": "#1d1d1f",
+        "menarc-gray": "#86868b",
+        "menarc-light": "#e5e7eb",
+        "apple-black": "#ffffff",
+        "apple-card": "#f5f5f7",
+        "apple-border": "#d2d2d7",
+        "apple-muted": "#86868b",
       },
       fontFamily: {
-        display: ["Space Grotesk", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        display: ["Inter", "-apple-system", "BlinkMacSystemFont", "SF Pro Display", "Helvetica Neue", "sans-serif"],
+        body: ["Inter", "-apple-system", "BlinkMacSystemFont", "SF Pro Text", "Helvetica Neue", "sans-serif"],
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "grid-pattern":
-          "linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px)",
+          "linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px)",
         "hero-gradient":
-          "radial-gradient(ellipse 80% 60% at 50% -20%, rgba(212,175,55,0.12) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 50%, rgba(255,255,255,0.05) 0%, transparent 60%)",
+          "radial-gradient(ellipse 80% 60% at 50% -20%, rgba(197,160,89,0.15) 0%, transparent 60%), radial-gradient(ellipse 60% 40% at 80% 50%, rgba(0,0,0,0.04) 0%, transparent 60%)",
       },
       backgroundSize: {
         "grid-size": "60px 60px",
@@ -50,8 +54,8 @@ const config: Config = {
           "50%": { transform: "translateY(6px)" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(212,175,55,0.15)" },
-          "50%": { boxShadow: "0 0 40px rgba(212,175,55,0.35)" },
+          "0%, 100%": { boxShadow: "0 0 20px rgba(197,160,89,0.15)" },
+          "50%": { boxShadow: "0 0 40px rgba(197,160,89,0.35)" },
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },
@@ -91,11 +95,11 @@ const config: Config = {
         "bounce-subtle": "bounce-subtle 2s ease-in-out infinite",
       },
       boxShadow: {
-        "glow-gold": "0 0 30px rgba(212,175,55,0.25)",
-        "glow-white": "0 0 30px rgba(255,255,255,0.15)",
-        "glow-sm": "0 0 15px rgba(212,175,55,0.15)",
-        card: "0 4px 40px rgba(0,0,0,0.4)",
-        "card-hover": "0 8px 60px rgba(212,175,55,0.12)",
+        "glow-gold": "0 0 30px rgba(197,160,89,0.25)",
+        "glow-white": "0 0 30px rgba(0,0,0,0.08)",
+        "glow-sm": "0 0 15px rgba(197,160,89,0.15)",
+        card: "0 4px 40px rgba(0,0,0,0.06)",
+        "card-hover": "0 8px 60px rgba(197,160,89,0.15)",
       },
     },
   },
