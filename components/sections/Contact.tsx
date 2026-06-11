@@ -90,7 +90,7 @@ export default function Contact() {
       </div>
 
       {/* Subtle Apple ambient glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-black/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[#c5a059]/10 blur-[120px] pointer-events-none" />
 
       <div className="container-custom relative z-10">
         <AnimatedSection className="text-center mb-16">

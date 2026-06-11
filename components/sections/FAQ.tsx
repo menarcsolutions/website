@@ -4,9 +4,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import { ChevronDown } from "lucide-react";
-import { faqData } from "@/lib/faq-data";
+import { faqData, FAQItem } from "@/lib/faq-data";
 
-export default function FAQ() {
+interface FAQProps {
+  customFaqs?: FAQItem[];
+}
+
+export default function FAQ({ customFaqs }: FAQProps) {
+  const currentFaqData = customFaqs || faqData;
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleOpen = (index: number) => {
@@ -17,7 +22,7 @@ export default function FAQ() {
     const handleHash = () => {
       if (window.location.hash) {
         const hash = window.location.hash.replace("#", "");
-        const index = faqData.findIndex((item) => item.id === hash);
+        const index = currentFaqData.findIndex((item) => item.id === hash);
         if (index !== -1) {
           setOpenIndex(index);
           setTimeout(() => {
@@ -35,7 +40,7 @@ export default function FAQ() {
     handleHash();
     window.addEventListener("hashchange", handleHash);
     return () => window.removeEventListener("hashchange", handleHash);
-  }, []);
+  }, [currentFaqData]);
 
   return (
     <section
@@ -58,7 +63,7 @@ export default function FAQ() {
 
       {/* Ambient Apple Textures */}
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none bg-[radial-gradient(#d2d2d7_1px,transparent_1px)] [background-size:32px_32px]" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#c5a059]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[800px] bg-[#c5a059]/12 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container-custom relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-16 md:mb-20">
@@ -75,7 +80,7 @@ export default function FAQ() {
 
         {/* Minimal & Premium 2-Column Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-start">
-          {faqData.map((faq, index) => {
+          {currentFaqData.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
               <AnimatedSection

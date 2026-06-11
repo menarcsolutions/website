@@ -115,7 +115,7 @@ export default function TechEcosystem() {
       <div className="absolute inset-0 opacity-40 pointer-events-none bg-[radial-gradient(#d2d2d7_1px,transparent_1px)] [background-size:32px_32px]" />
 
       {/* Subtle glowing spot */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#c5a059]/10 blur-[80px] rounded-full pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#c5a059]/20 blur-[80px] rounded-full pointer-events-none" />
 
       <div className="container-custom relative z-10 flex flex-col md:flex-row items-center h-full w-full gap-8 md:gap-12">
         
@@ -129,7 +129,33 @@ export default function TechEcosystem() {
               <span style={{ color: '#D4AF37' }}>Enterprise</span> <span className="text-[#1d1d1f]">Infrastructure</span>
             </h2>
             <p className="text-[#86868b] text-lg md:text-xl max-w-lg mx-auto md:mx-0 leading-relaxed font-bold">
-              We build using the exact same technology stack that powers Silicon Valley's fastest-growing companies.
+              We design and engineer digital systems adhering strictly to modern web standards as outlined by the{" "}
+              <a
+                href="https://www.w3.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1d1d1f] hover:text-[#c5a059] underline decoration-1 underline-offset-4 transition-colors"
+              >
+                W3C
+              </a>{" "}
+              and following optimal architectural practices documented on{" "}
+              <a
+                href="https://developer.mozilla.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1d1d1f] hover:text-[#c5a059] underline decoration-1 underline-offset-4 transition-colors"
+              >
+                MDN Web Docs
+              </a>{" "}
+              and Google's{" "}
+              <a
+                href="https://web.dev"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1d1d1f] hover:text-[#c5a059] underline decoration-1 underline-offset-4 transition-colors"
+              >
+                web.dev
+              </a>.
             </p>
           </AnimatedSection>
         </div>

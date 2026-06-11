@@ -5,20 +5,28 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { label: "Services", href: "#services" },
   { label: "Industries", href: "#industries" },
   { label: "Tech Stack", href: "#tech-ecosystem" },
+  { label: "Blog", href: "/blog" },
   { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
+  const isSubPage = pathname !== "/";
 
   const handleNavClick = (href: string) => {
     setMobileOpen(false);
     if (href.startsWith("#")) {
+      if (isSubPage) {
+        window.location.href = `/${href}`;
+        return;
+      }
       setTimeout(() => {
         const el = document.querySelector(href);
         if (el) {
@@ -59,14 +67,33 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <ul className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <li key={link.label}>
-                <button
-                  onClick={() => handleNavClick(link.href)}
+            {isSubPage && (
+              <li>
+                <Link
+                  href="/"
                   className="text-[#86868b] hover:text-[#1d1d1f] text-xs font-medium px-4 py-2 rounded-full hover:bg-black/5 transition-all duration-200 tracking-tight"
                 >
-                  {link.label}
-                </button>
+                  Home
+                </Link>
+              </li>
+            )}
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                {link.href.startsWith("/") ? (
+                  <Link
+                    href={link.href}
+                    className="text-[#86868b] hover:text-[#1d1d1f] text-xs font-medium px-4 py-2 rounded-full hover:bg-black/5 transition-all duration-200 tracking-tight block"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => handleNavClick(link.href)}
+                    className="text-[#86868b] hover:text-[#1d1d1f] text-xs font-medium px-4 py-2 rounded-full hover:bg-black/5 transition-all duration-200 tracking-tight"
+                  >
+                    {link.label}
+                  </button>
+                )}
               </li>
             ))}
           </ul>
@@ -107,17 +134,37 @@ export default function Navbar() {
             className="md:hidden bg-[#f5f5f7]/95 backdrop-blur-2xl border-t border-[#d2d2d7]/60 overflow-hidden"
           >
             <div className="container-custom py-6 flex flex-col gap-2">
-              {navLinks.map((link, i) => (
-                <motion.button
-                  key={link.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-left px-4 py-3 text-[#1d1d1f] hover:text-menarc-gold text-sm font-medium transition-all duration-200 rounded-xl hover:bg-black/5 tracking-tight"
+              {isSubPage && (
+                <Link
+                  href="/"
+                  onClick={() => setMobileOpen(false)}
+                  className="text-left px-4 py-3 text-[#1d1d1f] hover:text-menarc-gold text-sm font-medium transition-all duration-200 rounded-xl hover:bg-black/5 tracking-tight block"
                 >
-                  {link.label}
-                </motion.button>
+                  Home
+                </Link>
+              )}
+              {navLinks.map((link, i) => (
+                link.href.startsWith("/") ? (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-left px-4 py-3 text-[#1d1d1f] hover:text-menarc-gold text-sm font-medium transition-all duration-200 rounded-xl hover:bg-black/5 tracking-tight block"
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <motion.button
+                    key={link.label}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => handleNavClick(link.href)}
+                    className="text-left px-4 py-3 text-[#1d1d1f] hover:text-menarc-gold text-sm font-medium transition-all duration-200 rounded-xl hover:bg-black/5 tracking-tight"
+                  >
+                    {link.label}
+                  </motion.button>
+                )
               ))}
               <a
                 href="https://wa.me/917550255420?text=Hi%20Menarc%2C%20I%27m%20interested%20in%20a%20consultation."

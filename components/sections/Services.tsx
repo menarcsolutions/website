@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import Image from "next/image";
@@ -31,6 +32,7 @@ const categories = [
     color: "gold",
     services: [
       {
+        slug: "corporate-websites",
         icon: Globe,
         title: "Corporate Websites",
         desc: "Cinematic, fast-loading, SEO-optimized sites that position your brand as an industry leader.",
@@ -47,6 +49,7 @@ const categories = [
         }
       },
       {
+        slug: "ecommerce-platforms",
         icon: ShoppingCart,
         title: "Ecommerce Platforms",
         desc: "High-conversion storefronts with inventory sync and automated order workflows.",
@@ -63,6 +66,7 @@ const categories = [
         }
       },
       {
+        slug: "booking-systems",
         icon: Calendar,
         title: "Booking Systems",
         desc: "Smart booking with calendar sync and automated WhatsApp confirmations.",
@@ -79,6 +83,7 @@ const categories = [
         }
       },
       {
+        slug: "business-dashboards",
         icon: BarChart3,
         title: "Business Dashboards",
         desc: "Real-time analytics dashboards for complete visibility into revenue and metrics.",
@@ -94,6 +99,40 @@ const categories = [
           deliverables: ["Secure React/Next.js executive dashboard", "Custom API integration middleware", "Automated scheduled reporting engine"]
         }
       },
+      {
+        slug: "custom-web-applications",
+        icon: Database,
+        title: "Custom Web Applications",
+        desc: "Custom SaaS platforms, customer portals, and internal tool suites built on React and serverless backends.",
+        benefits: ["Zero License Fees", "Full Ownership", "Extreme Scalability"],
+        details: {
+          overview: "When off-the-shelf software packages run out of runway, you need custom application engineering. We build high-performance SaaS platforms, client portals, internal tool suites, and automated web apps built on Next.js, Node.js, and serverless database clusters.",
+          features: [
+            { title: "React & Next.js Frontends", desc: "Modern, component-driven interfaces that render instantly." },
+            { title: "Serverless Database Clusters", desc: "Highly available databases (Supabase, PostgreSQL) that scale automatically." },
+            { title: "Secure User Authentication", desc: "Enterprise SSO, OAuth, and multi-factor authentication setup." },
+            { title: "Comprehensive API Integration", desc: "Custom webhooks and middleware bridging internal modules." }
+          ],
+          deliverables: ["Handover of full GitHub repo", "Isolated cloud database setup", "Deployment to Vercel/AWS"]
+        }
+      },
+      {
+        slug: "landing-pages",
+        icon: Zap,
+        title: "Landing Pages",
+        desc: "High-converting sales funnels, lead generation layouts, and A/B testable campaign pages.",
+        benefits: ["Conversion Optimized", "Sub-Second Loading", "CRM Integration"],
+        details: {
+          overview: "Stop throwing ad budget at a generic homepage that confuses visitors. We design high-converting, single-purpose landing pages and multi-step sales funnels tailored to specific advertising campaigns.",
+          features: [
+            { title: "Distraction-Free Layouts", desc: "No main menu links or external escapes. Designed to get the form submission." },
+            { title: "Sub-Second Edge Rendering", desc: "Static HTML pages deployed to global servers right next to the user." },
+            { title: "A/B Testing Infrastructure", desc: "Compare different headers or buttons automatically with clean metrics." },
+            { title: "Secure Form Capture Sync", desc: "Encrypted data transmission directly into CRM systems." }
+          ],
+          deliverables: ["Optimized static landing page", "UTM lead capture setup", "Automated A/B routing rules"]
+        }
+      }
     ],
   },
   {
@@ -103,6 +142,7 @@ const categories = [
     color: "white",
     services: [
       {
+        slug: "lead-management",
         icon: Bot,
         title: "Lead Management",
         desc: "Automatically capture, qualify, route, and follow up on every lead seamlessly.",
@@ -119,6 +159,7 @@ const categories = [
         }
       },
       {
+        slug: "whatsapp-workflows",
         icon: MessageSquare,
         title: "WhatsApp Workflows",
         desc: "Automated WhatsApp flows for follow-ups, reminders, and support.",
@@ -135,6 +176,7 @@ const categories = [
         }
       },
       {
+        slug: "email-sequences",
         icon: Mail,
         title: "Email Sequences",
         desc: "Behavior-triggered email sequences for onboarding, upsells, and retention.",
@@ -151,6 +193,7 @@ const categories = [
         }
       },
       {
+        slug: "inquiry-automation",
         icon: Users,
         title: "Inquiry Automation",
         desc: "Route and respond to inquiries instantly using AI across all channels.",
@@ -167,6 +210,7 @@ const categories = [
         }
       },
       {
+        slug: "crm-integrations",
         icon: Database,
         title: "CRM Integrations",
         desc: "Connect your CRM to web, WhatsApp, and email for a unified customer view.",
@@ -183,6 +227,7 @@ const categories = [
         }
       },
       {
+        slug: "internal-tasks",
         icon: Wrench,
         title: "Internal Tasks",
         desc: "Automate internal approvals, report generation, and team notifications.",
@@ -197,8 +242,8 @@ const categories = [
           ],
           deliverables: ["Custom internal workflow engine setup", "Slack/Teams/WhatsApp notification bots", "Managerial approval dashboard"]
         }
-      },
-    ],
+      }
+    ]
   },
   {
     id: "growth",
@@ -207,6 +252,7 @@ const categories = [
     color: "gold",
     services: [
       {
+        slug: "seo-optimization",
         icon: Search,
         title: "SEO Optimization",
         desc: "Technical and content SEO that drives targeted organic traffic from day one.",
@@ -223,6 +269,7 @@ const categories = [
         }
       },
       {
+        slug: "speed-optimization",
         icon: Zap,
         title: "Speed Optimization",
         desc: "Achieve perfect Lighthouse scores with advanced caching and edge delivery.",
@@ -239,6 +286,7 @@ const categories = [
         }
       },
       {
+        slug: "analytics-tracking",
         icon: BarChart3,
         title: "Analytics Tracking",
         desc: "GA4, Search Console, and custom dashboards to track real conversions.",
@@ -255,6 +303,7 @@ const categories = [
         }
       },
       {
+        slug: "managed-hosting",
         icon: Wrench,
         title: "Managed Hosting",
         desc: "Secure cloud hosting, uptime monitoring, and ongoing platform maintenance.",
@@ -274,269 +323,115 @@ const categories = [
   },
 ];
 
-type ServiceModalProps = {
-  service: (typeof categories)[0]["services"][0];
-  onClose: () => void;
-};
-
-function ServiceModal({ service, onClose }: ServiceModalProps) {
-  const Icon = service.icon;
-
-  // Prevent background scrolling and handle mobile back button / history state
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-
-    // Push a history state when the modal opens
-    window.history.pushState({ serviceModalOpen: true }, "");
-
-    // Listen for the popstate event (mobile back button or browser back button)
-    const handlePopState = () => {
-      onClose();
-    };
-
-    window.addEventListener("popstate", handlePopState);
-
-    return () => {
-      document.body.style.overflow = "unset";
-      window.removeEventListener("popstate", handlePopState);
-    };
-  }, [onClose]);
-
-  // Handler for the X close button
-  const handleCloseClick = () => {
-    onClose();
-    setTimeout(() => {
-      window.history.back();
-    }, 10);
-  };
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 30 }}
-      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed inset-0 h-[100dvh] z-[100] bg-white overflow-hidden select-none flex flex-col"
-    >
-      {/* Solid Header for Overlay (Locked permanently at the top of the dynamic viewport) */}
-      <div className="bg-[#f5f5f7] border-b border-[#d2d2d7] z-50 px-6 py-4 flex items-center justify-between shadow-sm shrink-0">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-white border border-[#d2d2d7]/60 flex items-center justify-center shadow-sm">
-            <Icon className="w-5 h-5 text-[#1d1d1f]" strokeWidth={2} />
-          </div>
-          <span className="font-bold text-base md:text-lg text-[#1d1d1f] tracking-tight">{service.title} Architecture</span>
-        </div>
-        <button
-          onClick={handleCloseClick}
-          className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-[#d2d2d7]/40 text-[#1d1d1f] text-xs font-bold transition-all border border-[#d2d2d7]/60 shadow-md active:scale-95"
-        >
-          <X size={18} className="text-red-500 stroke-[2.5]" /> Close View
-        </button>
-      </div>
-
-      {/* Main Dedicated Scrollable Container (Hardware accelerated, perfectly fits remaining viewport height) */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden w-full">
-        <div className="container-custom max-w-4xl mx-auto px-6 pt-12 pb-32 md:pb-24 flex flex-col justify-between min-h-full">
-          <div>
-            {/* Header Tag */}
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f5f5f7] border border-[#d2d2d7]/60 mb-6 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-menarc-gold animate-pulse" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-[#86868b]">Enterprise Capability</span>
-            </div>
-
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter text-[#1d1d1f] mb-6 leading-[1.08] break-words">
-              Architecting <span className="gradient-titanium-gold">{service.title}.</span>
-            </h1>
-
-            <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-3xl overflow-hidden mb-12 border border-[#d2d2d7]/60 shadow-lg group bg-[#f5f5f7]">
-              <div className="absolute inset-0 opacity-30 pointer-events-none bg-[radial-gradient(#d2d2d7_1px,transparent_1px)] [background-size:24px_24px]" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-[#1d1d1f]/5 via-transparent to-[#c5a059]/10 pointer-events-none z-10" />
-              <Image
-                src={`https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80`}
-                alt={`${service.title} Architecture`}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-                priority
-              />
-              <div className="absolute bottom-4 left-4 z-20 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 backdrop-blur-md border border-[#d2d2d7]/60 shadow-sm text-xs font-semibold text-[#1d1d1f]">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" /> Live Enterprise Infrastructure
-              </div>
-            </div>
-
-            <p className="text-base sm:text-lg md:text-xl text-[#86868b] leading-relaxed mb-12 tracking-tight font-normal pb-12 border-b border-[#d2d2d7]/60 break-words">
-              {service.details.overview}
-            </p>
-
-            <div className="mb-12">
-              <h2 className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest mb-6">Core Capabilities & Architecture</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {service.details.features.map((feat, idx) => (
-                  <div key={idx} className="p-8 rounded-3xl bg-[#f5f5f7] border border-[#d2d2d7]/60 shadow-sm hover:shadow-md transition-all">
-                    <div className="w-10 h-10 rounded-2xl bg-white border border-[#d2d2d7]/60 flex items-center justify-center mb-4 shadow-sm">
-                      <span className="font-bold text-sm text-[#1d1d1f]">0{idx + 1}</span>
-                    </div>
-                    <h3 className="font-bold text-lg text-[#1d1d1f] mb-2 tracking-tight">{feat.title}</h3>
-                    <p className="text-sm text-[#86868b] leading-relaxed tracking-tight">{feat.desc}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="mb-16">
-              <h2 className="text-xs font-bold text-[#1d1d1f] uppercase tracking-widest mb-6">Key Deliverables</h2>
-              <div className="flex flex-wrap gap-3">
-                {service.details.deliverables.map((del) => (
-                  <span key={del} className="px-6 py-3 rounded-full text-xs sm:text-sm font-semibold bg-[#f5f5f7] border border-[#d2d2d7]/60 text-[#1d1d1f] tracking-tight shadow-sm flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-menarc-gold animate-pulse" /> {del}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div className="pt-8 border-t border-[#d2d2d7]/60 flex flex-col sm:flex-row items-center justify-between gap-6 mt-12 pb-4">
-            <div>
-              <h4 className="font-bold text-lg text-[#1d1d1f] tracking-tight mb-1">Ready to initiate {service.title}?</h4>
-              <p className="text-xs sm:text-sm text-[#86868b] tracking-tight">Connect directly with our engineering architects via WhatsApp.</p>
-            </div>
-            <a
-              href={`https://wa.me/917550255420?text=Hi%20Menarc%2C%20I%27m%20interested%20in%20initiating%20${encodeURIComponent(service.title)}.`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-white bg-[#1d1d1f] hover:bg-[#1d1d1f]/90 active:scale-[0.98] transition-all tracking-tight shadow-xl text-sm sm:text-base shrink-0"
-            >
-              Initiate Deployment
-              <ArrowRight className="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+type ServiceModalProps = never;
 
 export default function Services() {
   const [activeTab, setActiveTab] = useState("web");
-  const [selectedService, setSelectedService] = useState<null | {
-    service: (typeof categories)[0]["services"][0];
-    color: string;
-  }>(null);
+  const router = useRouter();
 
   const activeCategory = categories.find((c) => c.id === activeTab)!;
 
   return (
-    <>
-      <section id="services" className="pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32 relative overflow-hidden bg-white select-none">
-        <div className="absolute top-0 left-0 w-full overflow-hidden leading-none bg-[#f5f5f7]">
-          <svg
-            className="relative block w-full h-12 md:h-20 text-white"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path
-              d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z"
-              fill="currentColor"
-            ></path>
-          </svg>
-        </div>
+    <section id="services" className="pt-12 md:pt-16 lg:pt-20 pb-16 md:pb-24 lg:pb-32 relative overflow-hidden bg-white select-none">
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none bg-[#f5f5f7]">
+        <svg
+          className="relative block w-full h-12 md:h-20 text-white"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z"
+            fill="currentColor"
+          ></path>
+        </svg>
+      </div>
 
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,_rgba(0,0,0,0.04)_0%,_transparent_50%)]" />
+      <div className="absolute inset-0 opacity-40 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,_rgba(0,0,0,0.08)_0%,_transparent_55%)]" />
 
-        <div className="container-custom relative z-10 pt-8 md:pt-12">
-          <AnimatedSection className="text-center mb-16">
-            <p className="text-[#86868b] text-xs font-semibold tracking-widest uppercase mb-3">
-              Practice Areas
-            </p>
-            <h2 className="font-bold text-4xl md:text-6xl mb-6 tracking-tighter gradient-titanium-gold">
-              Services That Drive Results.
-            </h2>
-            <p className="text-[#86868b] text-lg max-w-2xl mx-auto leading-relaxed tracking-tight">
-              From premium web platforms to full automation systems — every solution is architected for measurable impact and enterprise scale.
-            </p>
-          </AnimatedSection>
+      <div className="container-custom relative z-10 pt-8 md:pt-12">
+        <AnimatedSection className="text-center mb-16">
+          <p className="text-[#86868b] text-xs font-semibold tracking-widest uppercase mb-3">
+            Practice Areas
+          </p>
+          <h2 className="font-bold text-4xl md:text-6xl mb-6 tracking-tighter gradient-titanium-gold">
+            Services That Drive Results.
+          </h2>
+          <p className="text-[#86868b] text-lg max-w-2xl mx-auto leading-relaxed tracking-tight">
+            From premium web platforms to full automation systems — every solution is architected for measurable impact and enterprise scale.
+          </p>
+        </AnimatedSection>
 
-          {/* Apple Pill Tabs */}
-          <AnimatedSection delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-2 mb-12">
-              {categories.map((cat) => {
-                const CatIcon = cat.icon;
-                const isActive = activeTab === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    onClick={() => setActiveTab(cat.id)}
-                    className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold border transition-all duration-300 tracking-tight ${
-                      isActive ? "bg-[#1d1d1f] text-white border-[#1d1d1f] shadow-lg scale-105" : "bg-[#f5f5f7] text-[#86868b] border-[#d2d2d7]/60 hover:text-[#1d1d1f] hover:border-[#d2d2d7]"
+        {/* Apple Pill Tabs */}
+        <AnimatedSection delay={0.1}>
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
+            {categories.map((cat) => {
+              const CatIcon = cat.icon;
+              const isActive = activeTab === cat.id;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setActiveTab(cat.id)}
+                  className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold border transition-all duration-300 tracking-tight ${isActive ? "bg-[#1d1d1f] text-white border-[#1d1d1f] shadow-lg scale-105" : "bg-[#f5f5f7] text-[#86868b] border-[#d2d2d7]/60 hover:text-[#1d1d1f] hover:border-[#d2d2d7]"
                     }`}
-                  >
-                    <CatIcon className="w-4 h-4" strokeWidth={2} />
-                    {cat.label}
-                  </button>
-                );
-              })}
-            </div>
-          </AnimatedSection>
+                >
+                  <CatIcon className="w-4 h-4" strokeWidth={2} />
+                  {cat.label}
+                </button>
+              );
+            })}
+          </div>
+        </AnimatedSection>
 
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {activeCategory.services.map((service, i) => {
-                const Icon = service.icon;
-                return (
-                  <motion.div
-                    key={service.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    onClick={() => setSelectedService({ service, color: activeCategory.color })}
-                    className="bg-[#f5f5f7] border border-[#d2d2d7]/60 hover:border-[#d2d2d7] rounded-3xl p-8 flex flex-col justify-between cursor-pointer group transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
-                  >
-                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#c5a059]/15 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {activeCategory.services.map((service, i) => {
+              const Icon = service.icon;
+              return (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  onClick={() => router.push(`/services/${service.slug}`)}
+                  className="bg-[#f5f5f7] border border-[#d2d2d7]/60 hover:border-[#d2d2d7] rounded-3xl p-8 flex flex-col justify-between cursor-pointer group transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 relative overflow-hidden"
+                >
+                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#c5a059]/15 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                    <div className="relative z-10">
-                      <div className="mb-6">
-                        <div className="w-12 h-12 rounded-2xl bg-white border border-[#d2d2d7]/60 flex items-center justify-center group-hover:bg-black/5 transition-colors shadow-sm inline-flex">
-                          <Icon className="w-6 h-6 text-[#1d1d1f]" strokeWidth={1.75} />
-                        </div>
+                  <div className="relative z-10">
+                    <div className="mb-6">
+                      <div className="w-12 h-12 rounded-2xl bg-white border border-[#d2d2d7]/60 flex items-center justify-center group-hover:bg-black/5 transition-colors shadow-sm inline-flex">
+                        <Icon className="w-6 h-6 text-[#1d1d1f]" strokeWidth={1.75} />
                       </div>
-
-                      <h3 className="font-bold text-2xl text-[#1d1d1f] mb-3 tracking-tight group-hover:gradient-titanium-gold transition-all">
-                        {service.title}
-                      </h3>
-
-                      <p className="text-[#86868b] text-sm leading-relaxed mb-6 tracking-tight">
-                        {service.desc}
-                      </p>
                     </div>
 
-                    <div className="pt-6 border-t border-[#d2d2d7]/60 flex items-center justify-between text-xs text-[#86868b] tracking-tight font-medium relative z-10">
-                      <span>{service.benefits[0]}</span>
-                      <span className="text-[#1d1d1f] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold">
-                        Explore <ArrowRight className="w-3.5 h-3.5" />
-                      </span>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
-          </AnimatePresence>
-        </div>
-      </section>
+                    <h3 className="font-bold text-2xl text-[#1d1d1f] mb-3 tracking-tight group-hover:gradient-titanium-gold transition-all">
+                      {service.title}
+                    </h3>
 
-      <AnimatePresence>
-        {selectedService && (
-          <ServiceModal
-            service={selectedService.service}
-            onClose={() => setSelectedService(null)}
-          />
-        )}
-      </AnimatePresence>
-    </>
+                    <p className="text-[#86868b] text-sm leading-relaxed mb-6 tracking-tight">
+                      {service.desc}
+                    </p>
+                  </div>
+
+                  <div className="pt-6 border-t border-[#d2d2d7]/60 flex items-center justify-between text-xs text-[#86868b] tracking-tight font-medium relative z-10">
+                    <span>{service.benefits[0]}</span>
+                    <span className="text-[#1d1d1f] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold">
+                      Explore <ArrowRight className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </AnimatePresence>
+      </div>
+    </section>
   );
 }

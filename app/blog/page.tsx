@@ -1,136 +1,181 @@
-import type { Metadata } from "next";
-import ContactSection from "@/components/sections/Contact";
+import React from "react";
 import Link from "next/link";
-import { ArrowRight, Calendar, User, BookOpen } from "lucide-react";
+import Image from "next/image";
+import Hero from "@/components/sections/Hero";
+import { getBlogPosts } from "@/lib/blog";
 
-export const metadata: Metadata = {
-  title: "Blog & Engineering Insights | Menarc Solutions",
+export const metadata = {
+  title: "Insights, Web Design & Automation Blog | Menarc",
   description:
-    "Read the latest engineering insights, web development trends, AI workflow automation tutorials, and Core Web Vitals guides by Menarc Solutions.",
-  keywords: [
-    "Menarc Blog",
-    "Web Development Trends 2026",
-    "AI Workflow Automation Tutorial",
-    "Next.js App Router Performance",
-    "Technical SEO Guide",
-  ],
+    "Get honest pricing breakdowns, design trends, and operations automation guides for businesses in Chennai and India from Marco D'Agostino.",
+  alternates: {
+    canonical: "https://menarc.in/blog",
+  },
 };
 
-const blogPosts = [
-  {
-    title: "Architecting Next.js 15 Applications for 100/100 Core Web Vitals",
-    category: "Engineering & Speed",
-    date: "May 14, 2026",
-    author: "Menarc Engineering",
-    readTime: "7 min read",
-    desc: "A comprehensive deep-dive into server-side script injection, dynamic import optimization, and font subsetting to eliminate Cumulative Layout Shift (CLS) in production.",
-    slug: "architecting-nextjs-100-core-web-vitals",
-    featured: true,
-  },
-  {
-    title: "Building Resilient n8n Automation Pipelines for Enterprise WhatsApp Sync",
-    category: "AI & Automation",
-    date: "May 10, 2026",
-    author: "Menarc Solutions",
-    readTime: "5 min read",
-    desc: "Learn how to establish zero-latency webhook listeners, error-handling queues, and automated WhatsApp CRM synchronization without relying on bloated legacy middleware.",
-    slug: "building-resilient-n8n-automation-pipelines",
-    featured: false,
-  },
-  {
-    title: "Generative Engine Optimization (GEO): Ranking on ChatGPT & Perplexity",
-    category: "SEO & AI Search",
-    date: "May 5, 2026",
-    author: "Menarc SEO Team",
-    readTime: "6 min read",
-    desc: "Why traditional keyword stuffing is dead and how machine-readable `llms.txt` endpoints and Knowledge Graph entity anchoring dominate AI search crawlers.",
-    slug: "generative-engine-optimization-geo-guide",
-    featured: false,
-  },
-];
+export default function BlogListingPage() {
+  const posts = getBlogPosts();
 
-export default function BlogPage() {
+  // Categories list for reference
+  const categories = Array.from(new Set(posts.map((p) => p.category)));
+
+  // Hero custom elements
+  const heroTitle = (
+    <>
+      <span className="block text-[#1d1d1f]">Honest Tech</span>
+      <span className="block text-[#1d1d1f]">Insights & Guides.</span>
+    </>
+  );
+
+  const heroSubtitle =
+    "No corporate fluff, no buzzwords. Just honest advice on website development costs, workflows, and automating your small business pipelines.";
+
+  const featuredPost = posts[0];
+  const gridPosts = posts.slice(1);
+
   return (
-    <div className="pt-24 pb-16 bg-white text-[#1d1d1f] select-none">
-      {/* Header Banner */}
-      <section className="container-custom py-16 border-b border-[#d2d2d7]/60 relative">
-        <div className="absolute inset-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_0%,_rgba(0,0,0,0.04)_0%,_transparent_60%)]" />
+    <>
+      <Hero 
+        title={heroTitle} 
+        subtitle={heroSubtitle} 
+        badge="Menarc Solutions Blog" 
+        bgImage="https://images.pexels.com/photos/8972786/pexels-photo-8972786.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+      />
 
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#f5f5f7] border border-[#d2d2d7]/60 mb-6 shadow-md">
-            <span className="w-2 h-2 rounded-full bg-menarc-gold animate-pulse" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-[#86868b]">Engineering & Architecture Insights</span>
+      <section className="bg-white py-16 md:py-24 relative z-20">
+        <div className="container-custom px-6">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-xs text-[#86868b] mb-12">
+            <Link href="/" className="hover:text-[#1d1d1f] transition-colors">
+              Home
+            </Link>
+            <span className="text-[#d2d2d7]/80 select-none">·</span>
+            <span className="text-[#1d1d1f] font-medium">Blog</span>
+          </nav>
+
+          {/* Categories bar */}
+          <div className="flex flex-wrap items-center gap-2 mb-16 pb-4 border-b border-[#d2d2d7]/30">
+            <span className="text-xs font-semibold uppercase tracking-wider text-[#86868b] mr-4">
+              Topics:
+            </span>
+            <span className="px-4 py-1.5 rounded-full bg-[#1d1d1f] text-white text-xs font-medium cursor-default">
+              All Articles
+            </span>
+            {categories.map((cat) => (
+              <span
+                key={cat}
+                className="px-4 py-1.5 rounded-full bg-[#f5f5f7] border border-[#d2d2d7]/40 text-[#86868b] text-xs font-medium transition-colors"
+              >
+                {cat}
+              </span>
+            ))}
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter mb-6 leading-[1.08] text-[#1d1d1f]">
-            The Menarc <span className="gradient-titanium-gold">Engineering</span> Blog.
-          </h1>
-          <p className="text-lg text-[#86868b] leading-relaxed max-w-2xl mx-auto mb-12 tracking-tight font-normal">
-            Deep technical breakdowns, architectural tutorials, and digital strategy guides written by our senior software engineers and solutions architects.
-          </p>
-        </div>
-      </section>
 
-      {/* Blog Posts Bento Grid Section */}
-      <section className="container-custom py-20 border-b border-[#d2d2d7]/60 relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {blogPosts.map((post, idx) => (
-            <div
-              key={idx}
-              className={`p-8 rounded-3xl bg-[#f5f5f7] border ${
-                post.featured ? "border-2 border-[#1d1d1f] shadow-xl scale-105 z-10 hover:-translate-y-1" : "border-[#d2d2d7]/60 hover:border-[#d2d2d7] hover:-translate-y-1 shadow-lg"
-              } transition-all duration-300 flex flex-col justify-between group relative`}
-            >
-              {post.featured && (
-                <div className="absolute -top-3 left-8 px-3 py-1 rounded-full bg-[#1d1d1f] text-white font-bold text-[10px] tracking-wider uppercase shadow-md">
-                  Featured Article
+          {posts.length === 0 ? (
+            <div className="text-center py-20 bg-[#f5f5f7] rounded-3xl border border-[#d2d2d7]/60">
+              <p className="text-sm text-[#86868b] tracking-tight">
+                No blog posts found. Check back soon.
+              </p>
+            </div>
+          ) : (
+            <>
+              {/* Featured Post */}
+              {featuredPost && (
+                <div className="mb-20">
+                  <h3 className="gradient-titanium-gold font-bold text-xs uppercase tracking-wider mb-6">
+                    Featured Article
+                  </h3>
+                  <Link
+                    href={`/blog/${featuredPost.slug}`}
+                    className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 group"
+                  >
+                    <div className="lg:col-span-7 relative aspect-video rounded-3xl overflow-hidden bg-[#f5f5f7] border border-[#d2d2d7]/50 shadow-md">
+                      <Image
+                        src={featuredPost.image}
+                        alt={featuredPost.title}
+                        fill
+                        className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                      />
+                    </div>
+                    <div className="lg:col-span-5 flex flex-col justify-center">
+                      <div className="flex items-center gap-4 text-xs text-[#86868b] mb-4">
+                        <span className="px-3 py-1 bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-full font-medium text-[#1d1d1f]">
+                          {featuredPost.category}
+                        </span>
+                        <span>{featuredPost.readTime}</span>
+                      </div>
+                      <h2 className="text-3xl md:text-4xl font-black text-[#1d1d1f] tracking-tighter mb-4 leading-tight group-hover:text-menarc-gold transition-colors">
+                        {featuredPost.title}
+                      </h2>
+                      <p className="text-sm text-[#86868b] leading-relaxed mb-6 tracking-tight">
+                        {featuredPost.description}
+                      </p>
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-menarc-gold/10 flex items-center justify-center border border-menarc-gold/20 font-bold text-[#c5a059] text-xs">
+                          MD
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-[#1d1d1f]">
+                            {featuredPost.author}
+                          </p>
+                          <p className="text-[10px] text-[#86868b]">
+                            Prahran Plumber & Web Dev
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
                 </div>
               )}
 
-              <div>
-                <div className="flex items-center justify-between mb-6 text-xs text-[#86868b]">
-                  <span className="font-bold uppercase tracking-wider text-white bg-[#1d1d1f] px-3 py-1 rounded-full border border-[#1d1d1f] shadow-sm">
-                    {post.category}
-                  </span>
-                  <div className="flex items-center gap-1.5 font-medium tracking-tight">
-                    <BookOpen className="w-3.5 h-3.5 text-[#1d1d1f]" />
-                    <span>{post.readTime}</span>
+              {/* Grid Posts */}
+              {gridPosts.length > 0 && (
+                <div>
+                  <h3 className="gradient-titanium-gold font-bold text-xs uppercase tracking-wider mb-8 border-t border-[#d2d2d7]/30 pt-12">
+                    Latest Publications
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {gridPosts.map((post) => (
+                      <Link
+                        key={post.slug}
+                        href={`/blog/${post.slug}`}
+                        className="flex flex-col group"
+                      >
+                        <div className="relative aspect-video rounded-2xl overflow-hidden bg-[#f5f5f7] border border-[#d2d2d7]/50 shadow-sm mb-6">
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            className="object-cover group-hover:scale-[1.02] transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 30vw"
+                          />
+                        </div>
+                        <div className="flex items-center gap-3 text-xs text-[#86868b] mb-3">
+                          <span className="font-medium text-[#1d1d1f]">
+                            {post.category}
+                          </span>
+                          <span>•</span>
+                          <span>{post.readTime}</span>
+                        </div>
+                        <h3 className="text-xl font-bold text-[#1d1d1f] tracking-tight mb-3 leading-snug group-hover:text-menarc-gold transition-colors">
+                          {post.title}
+                        </h3>
+                        <p className="text-xs text-[#86868b] leading-relaxed mb-4 line-clamp-3 tracking-tight">
+                          {post.description}
+                        </p>
+                        <span className="text-xs font-semibold text-blue-600 hover:text-blue-500 mt-auto inline-flex items-center gap-1">
+                          Read Article →
+                        </span>
+                      </Link>
+                    ))}
                   </div>
                 </div>
-
-                <h3 className="text-2xl font-bold mb-3 tracking-tight text-[#1d1d1f] group-hover:gradient-titanium-gold transition-all">
-                  {post.title}
-                </h3>
-
-                <p className="text-sm text-[#86868b] leading-relaxed mb-8 tracking-tight">
-                  {post.desc}
-                </p>
-
-                {/* Author & Date */}
-                <div className="flex items-center justify-between text-xs text-[#86868b] mb-8 pb-8 border-b border-[#d2d2d7]/60 font-medium tracking-tight">
-                  <div className="flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-[#1d1d1f]" />
-                    <span>{post.author}</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-[#1d1d1f]" />
-                    <span>{post.date}</span>
-                  </div>
-                </div>
-              </div>
-
-              <Link
-                href={`/blog/${post.slug}`}
-                className="w-full py-4 rounded-full bg-white border border-[#d2d2d7]/60 hover:bg-[#1d1d1f] hover:text-white font-semibold text-center transition-all duration-300 flex items-center justify-center gap-2 text-sm tracking-tight shadow-sm"
-              >
-                <span>Read Full Article</span> <ArrowRight className="w-4 h-4" />
-              </Link>
-            </div>
-          ))}
+              )}
+            </>
+          )}
         </div>
       </section>
-
-      {/* Contact Section */}
-      <ContactSection />
-    </div>
+    </>
   );
 }

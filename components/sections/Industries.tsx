@@ -92,7 +92,7 @@ export default function Industries() {
         </svg>
       </div>
 
-      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,_rgba(0,0,0,0.04)_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none bg-[radial-gradient(circle_at_50%_50%,_rgba(0,0,0,0.08)_0%,_transparent_65%)]" />
 
       <div className="container-custom relative z-10 mb-16">
         <AnimatedSection className="text-center">

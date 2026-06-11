@@ -108,7 +108,7 @@ export default function RootLayout({
         ],
         "logo": {
           "@type": "ImageObject",
-          "url": "https://menarc.in/logo.svg",
+          "url": "https://menarc.in/logo.webp",
           "width": "512",
           "height": "512"
         },
@@ -129,7 +129,7 @@ export default function RootLayout({
         "@type": "LocalBusiness",
         "@id": "https://menarc.in/#localbusiness",
         "name": "Menarc",
-        "image": "https://menarc.in/logo.svg",
+        "image": "https://menarc.in/logo.webp",
         "priceRange": "$$$",
         "address": {
           "@type": "PostalAddress",

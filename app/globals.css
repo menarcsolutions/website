@@ -8,8 +8,8 @@
 @layer base {
   :root {
     --menarc-dark: #ffffff;
-    --menarc-card: #f5f5f7;
-    --menarc-border: #d2d2d7;
+    --menarc-card: #ececf0;
+    --menarc-border: #c7c7cc;
     --menarc-gold: #c5a059;
     --menarc-white: #1d1d1f;
     --menarc-gray: #86868b;

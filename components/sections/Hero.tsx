@@ -8,9 +8,10 @@ interface HeroProps {
   title?: React.ReactNode;
   subtitle?: string;
   badge?: string;
+  bgImage?: string;
 }
 
-export default function Hero({ title, subtitle, badge }: HeroProps) {
+export default function Hero({ title, subtitle, badge, bgImage }: HeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -40,7 +41,7 @@ export default function Hero({ title, subtitle, badge }: HeroProps) {
       {/* 2. Abstract 3D Glass / Liquid Titanium Background Image Accent */}
       <div className="absolute inset-0 z-0 opacity-[0.18] pointer-events-none mix-blend-multiply overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=2000&q=80"
+          src={bgImage || "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=2000&q=80"}
           alt="Apple Silicon Liquid Titanium Wave"
           fill
           priority
@@ -49,13 +50,13 @@ export default function Hero({ title, subtitle, badge }: HeroProps) {
       </div>
 
       {/* 3. Ultra-fine Architectural Dot Grid */}
-      <div className="absolute inset-0 z-0 opacity-40 pointer-events-none bg-[radial-gradient(#d2d2d7_1px,transparent_1px)] [background-size:32px_32px]" />
+      <div className="absolute inset-0 z-0 opacity-35 pointer-events-none bg-[radial-gradient(#d2d2d7_1px,transparent_1px)] [background-size:32px_32px]" />
 
       {/* 4. Dynamic Framer Motion Ambient Mesh Spheres */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         {/* Menarc Gold Sphere */}
         <motion.div
-          className="absolute top-[10%] left-[20%] w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-[#D4AF37]/25 blur-[90px] md:blur-[120px]"
+          className="absolute top-[10%] left-[20%] w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-[#D4AF37]/35 blur-[90px] md:blur-[120px]"
           animate={{
             x: [0, 100, -50, 0],
             y: [0, -50, 80, 0],
@@ -70,7 +71,7 @@ export default function Hero({ title, subtitle, badge }: HeroProps) {
 
         {/* Soft Titanium Sphere */}
         <motion.div
-          className="absolute top-[30%] right-[15%] w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-[#64748B]/25 blur-[90px] md:blur-[120px]"
+          className="absolute top-[30%] right-[15%] w-[500px] h-[500px] md:w-[700px] md:h-[700px] rounded-full bg-[#64748B]/35 blur-[90px] md:blur-[120px]"
           animate={{
             x: [0, -100, 50, 0],
             y: [0, 80, -50, 0],
