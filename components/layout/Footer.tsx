@@ -86,6 +86,7 @@ export default function Footer() {
                 { label: "Industries", href: "/#industries" },
                 { label: "Tech Stack", href: "/#tech-ecosystem" },
                 { label: "Blog", href: "/blog" },
+                { label: "About Menarc", href: "/about" },
                 { label: "Contact Us", href: "/#contact" },
               ].map((link) => (
                 <li key={link.label}>

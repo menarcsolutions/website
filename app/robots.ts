@@ -12,6 +12,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://menarc.in/sitemap.xml",
+    sitemap: "https://www.menarc.in/sitemap.xml",
   };
 }

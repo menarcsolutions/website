@@ -69,12 +69,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: {
-      canonical: `https://menarc.in/website-development-${locKey}`,
+      canonical: `https://www.menarc.in/website-development-${locKey}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://menarc.in/website-development-${locKey}`,
+      url: `https://www.menarc.in/website-development-${locKey}`,
       type: "website",
     },
     twitter: {
@@ -143,7 +143,7 @@ export default async function ProgrammaticServicePage({ params }: Props) {
     "provider": {
       "@type": "LocalBusiness",
       "name": "Menarc",
-      "url": "https://menarc.in",
+      "url": "https://www.menarc.in",
       "telephone": "+917550255420",
       "priceRange": "$$",
       "image": "/logo.webp",
@@ -170,13 +170,13 @@ export default async function ProgrammaticServicePage({ params }: Props) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://menarc.in"
+        "item": "https://www.menarc.in"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": `Website Development in ${locationName}`,
-        "item": `https://menarc.in/website-development-${locKey}`
+        "item": `https://www.menarc.in/website-development-${locKey}`
       }
     ]
   };

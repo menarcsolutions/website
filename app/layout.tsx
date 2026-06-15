@@ -20,7 +20,7 @@ const interBody = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://menarc.in"),
+  metadataBase: new URL("https://www.menarc.in"),
   title: {
     default: "Menarc | AI-Powered Business Systems & Automation Agency",
     template: "%s | Menarc",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://menarc.in",
+    url: "https://www.menarc.in",
     siteName: "Menarc | AI & Automation Agency",
     title: "Menarc | AI-Powered Business Systems & Automation Agency",
     description:
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     images: ["/og-image.jpg"],
   },
   alternates: {
-    canonical: "https://menarc.in",
+    canonical: "https://www.menarc.in",
   },
   icons: {
     icon: "/logo.webp",
@@ -96,10 +96,10 @@ export default function RootLayout({
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://menarc.in/#organization",
+        "@id": "https://www.menarc.in/#organization",
         "name": "Menarc",
         "alternateName": "Menarc Solutions",
-        "url": "https://menarc.in",
+        "url": "https://www.menarc.in",
         "sameAs": [
           "https://www.linkedin.com/company/menarc",
           "https://x.com/menarcsolutions",
@@ -108,7 +108,7 @@ export default function RootLayout({
         ],
         "logo": {
           "@type": "ImageObject",
-          "url": "https://menarc.in/logo.webp",
+          "url": "https://www.menarc.in/logo.webp",
           "width": "512",
           "height": "512"
         },
@@ -127,9 +127,9 @@ export default function RootLayout({
       },
       {
         "@type": "LocalBusiness",
-        "@id": "https://menarc.in/#localbusiness",
+        "@id": "https://www.menarc.in/#localbusiness",
         "name": "Menarc",
-        "image": "https://menarc.in/logo.webp",
+        "image": "https://www.menarc.in/logo.webp",
         "priceRange": "$$$",
         "address": {
           "@type": "PostalAddress",
@@ -142,7 +142,7 @@ export default function RootLayout({
           "latitude": "13.0827",
           "longitude": "80.2707"
         },
-        "url": "https://menarc.in",
+        "url": "https://www.menarc.in",
         "telephone": "+917550255420",
         "openingHoursSpecification": {
           "@type": "OpeningHoursSpecification",
@@ -154,7 +154,7 @@ export default function RootLayout({
       {
         "@type": "Service",
         "serviceType": "AI Business Systems & Automation",
-        "provider": { "@id": "https://menarc.in/#organization" },
+        "provider": { "@id": "https://www.menarc.in/#organization" },
         "areaServed": [
           { "@type": "City", "name": "Chennai" },
           { "@type": "City", "name": "Coimbatore" },

@@ -3,7 +3,7 @@ import { getBlogPosts } from "@/lib/blog";
 import { servicesData } from "@/lib/services-data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://menarc.in";
+  const baseUrl = "https://www.menarc.in";
   const now = new Date();
 
   const locations = [
@@ -51,6 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: baseUrl, lastModified: now, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${baseUrl}/about`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     ...localLandingPages,
     ...blogPosts,

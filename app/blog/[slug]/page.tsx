@@ -28,12 +28,12 @@ export async function generateMetadata({ params }: Props) {
     title,
     description,
     alternates: {
-      canonical: `https://menarc.in/blog/${slug}`,
+      canonical: `https://www.menarc.in/blog/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://menarc.in/blog/${slug}`,
+      url: `https://www.menarc.in/blog/${slug}`,
       type: "article",
       publishedTime: post.date,
       authors: ["https://menarc.in/about"],
@@ -190,7 +190,7 @@ export default async function BlogPostPage({ params }: Props) {
       "worksFor": {
         "@type": "Organization",
         "name": "Menarc Solutions",
-        "url": "https://menarc.in"
+        "url": "https://www.menarc.in"
       }
     },
     "publisher": {
@@ -198,12 +198,12 @@ export default async function BlogPostPage({ params }: Props) {
       "name": "Menarc Solutions",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://menarc.in/logo.webp"
+        "url": "https://www.menarc.in/logo.webp"
       }
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://menarc.in/blog/${slug}`
+      "@id": `https://www.menarc.in/blog/${slug}`
     }
   };
 
@@ -215,19 +215,19 @@ export default async function BlogPostPage({ params }: Props) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://menarc.in"
+        "item": "https://www.menarc.in"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Blog",
-        "item": "https://menarc.in/blog"
+        "item": "https://www.menarc.in/blog"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": post.title,
-        "item": `https://menarc.in/blog/${slug}`
+        "item": `https://www.menarc.in/blog/${slug}`
       }
     ]
   };

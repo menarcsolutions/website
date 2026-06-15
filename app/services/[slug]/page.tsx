@@ -33,12 +33,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title,
     description,
     alternates: {
-      canonical: `https://menarc.in/services/${slug}`,
+      canonical: `https://www.menarc.in/services/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://menarc.in/services/${slug}`,
+      url: `https://www.menarc.in/services/${slug}`,
       type: "website",
       images: [
         {
@@ -83,7 +83,7 @@ export default async function ServicePage({ params }: Props) {
     "provider": {
       "@type": "LocalBusiness",
       "name": "Menarc",
-      "url": "https://menarc.in",
+      "url": "https://www.menarc.in",
       "telephone": "+917550255420",
       "priceRange": "$$",
       "image": "/logo.webp",
@@ -110,19 +110,19 @@ export default async function ServicePage({ params }: Props) {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://menarc.in"
+        "item": "https://www.menarc.in"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Services",
-        "item": "https://menarc.in/#services"
+        "item": "https://www.menarc.in/#services"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": service.title,
-        "item": `https://menarc.in/services/${slug}`
+        "item": `https://www.menarc.in/services/${slug}`
       }
     ]
   };

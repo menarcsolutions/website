@@ -12,6 +12,7 @@ const navLinks = [
   { label: "Industries", href: "#industries" },
   { label: "Tech Stack", href: "#tech-ecosystem" },
   { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
   { label: "Contact", href: "#contact" },
 ];
 

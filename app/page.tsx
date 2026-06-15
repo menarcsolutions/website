@@ -12,12 +12,12 @@ export const metadata: Metadata = {
   title: "Web Development Company Chennai | Best Website Development Services",
   description: "Looking for a web development company in Chennai? Menarc Solutions builds custom websites, ecommerce stores, business websites, landing pages, and web applications designed to generate leads and grow your business.",
   alternates: {
-    canonical: "https://menarc.in",
+    canonical: "https://www.menarc.in",
   },
   openGraph: {
     title: "Web Development Company Chennai | Best Website Development Services",
     description: "Looking for a web development company in Chennai? Menarc Solutions builds custom websites, ecommerce stores, business websites, landing pages, and web applications designed to generate leads and grow your business.",
-    url: "https://menarc.in",
+    url: "https://www.menarc.in",
     type: "website",
   },
 };
