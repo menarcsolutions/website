@@ -88,14 +88,26 @@ export default function Footer() {
                 { label: "Blog", href: "/blog" },
                 { label: "About Menarc", href: "/about" },
                 { label: "Contact Us", href: "/#contact" },
+                { label: "Mail Login", href: "https://mail.menarc.in/", isExternal: true },
               ].map((link) => (
                 <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-xs text-[#86868b] hover:text-[#1d1d1f] hover:translate-x-1 transition-all duration-300 inline-block tracking-tight"
-                  >
-                    {link.label}
-                  </Link>
+                  {link.isExternal ? (
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-[#86868b] hover:text-[#1d1d1f] hover:translate-x-1 transition-all duration-300 inline-block tracking-tight"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-xs text-[#86868b] hover:text-[#1d1d1f] hover:translate-x-1 transition-all duration-300 inline-block tracking-tight"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

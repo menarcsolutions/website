@@ -114,7 +114,7 @@ export default function Hero({ title, subtitle, badge, bgImage }: HeroProps) {
               <>
                 <span className="block text-[#1d1d1f]">Intelligent Digital</span>
                 <span className="block text-[#1d1d1f]">Systems For</span>
-                <span className="block gradient-titanium-gold pb-2 whitespace-nowrap">
+                <span className="block gradient-titanium-gold pb-2 whitespace-normal sm:whitespace-nowrap">
                   Modern<span className="block md:inline"> Businesses.</span>
                 </span>
               </>
